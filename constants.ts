@@ -47,12 +47,15 @@ export const MOCK_FEED: FeedPost[] = [
   {
     id: 'f1',
     user: { id: 'u1', name: 'Ray Baughman', handle: '@rayb', avatarUrl: 'https://i.pravatar.cc/150?u=ray', badges: ['Pro'] },
-    content: 'Struggling with the mix on "Weedzilla". The bass is clashing with the kick. Anyone have 5 minutes to lend an ear? 👂',
-    type: 'QUESTION',
+    content: 'Need a Bassline for "Timeline Jumping". Style: Grunge/Punk. Looking for that raw 90s feel.',
+    type: 'COLLAB_REQUEST',
     mediaUrl: 'https://picsum.photos/seed/waveform/600/100',
     likes: 12,
     comments: 4,
-    isRewardEligible: true, // Answering this gives points
+    isRewardEligible: true,
+    bountyAmount: 100,
+    difficulty: 'Intermediate',
+    status: 'OPEN',
     timestamp: '2 hours ago'
   },
   {
@@ -68,11 +71,14 @@ export const MOCK_FEED: FeedPost[] = [
   {
     id: 'f3',
     user: { id: 'u3', name: 'Donnie Morrison', handle: '@donnie', avatarUrl: 'https://i.pravatar.cc/150?u=donnie', badges: [] },
-    content: 'Looking for a vocalist for a Bluegrass/Trap fusion track. I have the credits to pay for your time!',
-    type: 'COLLAB_REQUEST',
+    content: 'Struggling with the mix on "Weedzilla". The bass is clashing with the kick. Anyone have 5 minutes to lend an ear?',
+    type: 'QUESTION',
     likes: 8,
     comments: 12,
-    isRewardEligible: false,
+    isRewardEligible: true,
+    bountyAmount: 50,
+    difficulty: 'Pro',
+    status: 'OPEN',
     timestamp: '1 day ago'
   }
 ];
@@ -83,7 +89,7 @@ export const MOCK_REWARDS: Reward[] = [
     title: 'Leonardo.ai - 500 Credits',
     provider: 'Leonardo.ai',
     cost: 1000,
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1200px-Ethereum_logo_2014.svg.png', // Placeholder
+    imageUrl: 'https://cdn.leonardo.ai/users/d05d5e1e-289d-4876-b605-655f042657d4/generations/92c6c8e5-6804-436d-9650-71a74075550a/variations/Default_A_futuristic_cyborg_playing_a_synthesizer_in_a_neon_0_92c6c8e5-6804-436d-9650-71a74075550a.jpg', 
     description: 'Generate amazing album art for your next release.'
   },
   {
@@ -91,7 +97,7 @@ export const MOCK_REWARDS: Reward[] = [
     title: 'SeedDance Promo Package',
     provider: 'SeedDance',
     cost: 2500,
-    imageUrl: 'https://picsum.photos/seed/dance/100/100',
+    imageUrl: 'https://picsum.photos/seed/dance/200/200',
     description: 'Get your song featured on the main playlist for 1 week.'
   },
   {
@@ -99,7 +105,7 @@ export const MOCK_REWARDS: Reward[] = [
     title: 'Mentor Badge',
     provider: 'The Music Machine',
     cost: 5000,
-    imageUrl: 'https://picsum.photos/seed/badge/100/100',
+    imageUrl: 'https://picsum.photos/seed/badge/200/200',
     description: 'Unlock the Mentor badge and earn double points for helping others.'
   }
 ];

@@ -25,8 +25,13 @@ export interface FeedPost {
   mediaUrl?: string; // Audio or Image
   likes: number;
   comments: number;
-  isRewardEligible: boolean; // If answering this gives points
+  isRewardEligible: boolean; 
   timestamp: string;
+  
+  // New "Oasis" fields
+  bountyAmount?: number; // e.g., 50 Credits
+  difficulty?: 'Beginner' | 'Intermediate' | 'Pro';
+  status?: 'OPEN' | 'IN_PROGRESS' | 'SOLVED';
 }
 
 // Reward Types
@@ -47,7 +52,6 @@ export interface HelpArticle {
   content: string;
 }
 
-// Existing Types (Simplified)
 export interface Song {
   id: string;
   title: string;
@@ -57,13 +61,19 @@ export interface Song {
   duration: string;
   status: SongStatus;
   isPrivate: boolean;
+  format?: 'WAV' | 'MP3';
+  version?: 'ORIGINAL' | 'REMIX' | 'MASTERED';
+  releaseType?: 'Single' | 'Album' | 'EP';
+  trackCount?: number;
+  upc?: string;
+  distribution?: any[];
 }
 
 export interface WalletState {
   isConnected: boolean;
   accountId: string | null;
   balance: number;
-  karmaPoints: number; // New currency for kindness
+  karmaPoints: number; 
 }
 
 export type ViewState = 'FEED' | 'PROJECTS' | 'REWARDS' | 'HELP';

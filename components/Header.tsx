@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Bell, MessageSquare, Plus } from 'lucide-react';
+import { Search, Bell, Wifi, Battery, User } from 'lucide-react';
 import { WalletState } from '../types';
 
 interface HeaderProps {
@@ -9,58 +9,67 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ wallet, onConnect }) => {
   return (
-    <header className="h-16 bg-[#0d0d0d] border-b border-[#1a1a1a] flex items-center justify-between px-6 sticky top-0 z-20">
-      {/* Search Bar */}
-      <div className="flex-1 max-w-xl">
-        <div className="relative group">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4 group-focus-within:text-white transition-colors" />
-          <input
-            type="text"
-            placeholder="Search for artists, stems, or help..."
-            className="w-full bg-[#1a1a1a] border border-transparent rounded-full py-2 pl-10 pr-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:bg-[#252525] transition-all"
-          />
+    <header className="h-24 px-6 flex items-center justify-between shrink-0 z-20 relative">
+      {/* Background Decorative Lines */}
+      <div className="absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-cyan-950/20 border-b border-cyan-500/30 clip-path-trapezoid flex items-center justify-center">
+          <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse mr-2"></div>
+          <span className="text-[10px] text-cyan-400 font-mono tracking-widest">NET.LINK.ESTABLISHED</span>
+      </div>
+
+      {/* Left: Search Module */}
+      <div className="flex-1 max-w-md hidden md:block">
+        <div className="hud-panel h-10 flex items-center px-4 skew-x-12 transform origin-bottom-left">
+           <div className="-skew-x-12 flex items-center w-full">
+              <Search className="text-cyan-600 w-4 h-4 mr-2" />
+              <input 
+                 type="text" 
+                 placeholder="SEARCH DATABANKS..." 
+                 className="bg-transparent border-none focus:outline-none text-cyan-100 placeholder-cyan-800 text-sm font-mono w-full uppercase"
+              />
+           </div>
         </div>
       </div>
 
-      {/* Right Actions */}
-      <div className="flex items-center space-x-4 ml-4">
-        <div className="hidden md:flex items-center space-x-4 mr-4">
-          <button className="text-slate-400 hover:text-white transition-colors relative">
-            <Bell className="w-5 h-5" />
-            <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-          </button>
-          <button className="text-slate-400 hover:text-white transition-colors">
-            <MessageSquare className="w-5 h-5" />
-          </button>
+      {/* Center: Title */}
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold tracking-[0.2em] text-white text-glow-cyan uppercase leading-none">
+          The Oasis
+        </h1>
+        <div className="flex items-center space-x-2 mt-1">
+           <div className="h-[1px] w-8 bg-amber-500"></div>
+           <span className="text-xs text-amber-500 font-mono tracking-[0.3em] uppercase">Operating System</span>
+           <div className="h-[1px] w-8 bg-amber-500"></div>
         </div>
+      </div>
 
-        {/* Create Button (Primary) */}
-        <button className="hidden md:flex items-center space-x-2 bg-[#ff3333] hover:bg-[#cc0000] text-white px-4 py-1.5 rounded-full font-bold text-sm transition-all shadow-lg shadow-red-900/20">
-          <Plus className="w-4 h-4" />
-          <span>Create</span>
-        </button>
+      {/* Right: Status Module */}
+      <div className="flex-1 flex justify-end items-center space-x-6">
+         {/* Clock Mockup */}
+         <div className="hidden lg:flex flex-col items-end text-cyan-300">
+            <span className="text-2xl font-bold leading-none font-mono">08:27 PM</span>
+            <span className="text-[10px] uppercase tracking-widest text-cyan-600">Tue, Apr 28, 2102</span>
+         </div>
 
-        {/* Wallet / Profile */}
-        {wallet.isConnected ? (
-          <div className="flex items-center space-x-2 bg-[#1a1a1a] hover:bg-[#252525] rounded-full py-1 pr-4 pl-1 cursor-pointer transition-colors border border-[#333]">
-            <img 
-              src="https://i.pravatar.cc/150?u=me" 
-              alt="Profile" 
-              className="w-8 h-8 rounded-full border border-slate-600"
-            />
-            <div className="flex flex-col items-start leading-none">
-              <span className="text-xs font-bold text-white">My Profile</span>
-              <span className="text-[10px] text-yellow-500 font-mono">{wallet.karmaPoints} Karma</span>
+         {/* Connection Stats */}
+         <div className="flex items-center space-x-3 text-cyan-600">
+             <Wifi className="w-5 h-5" />
+             <Battery className="w-5 h-5" />
+         </div>
+
+         {/* User Profile */}
+         <button 
+           onClick={onConnect}
+           className={`hud-panel px-4 py-2 flex items-center space-x-3 hover:bg-cyan-500/10 transition-all ${wallet.isConnected ? 'border-cyan-400' : 'border-slate-700'}`}
+         >
+            <div className="w-8 h-8 rounded bg-cyan-900/50 flex items-center justify-center border border-cyan-500/30">
+               <User className="w-4 h-4 text-cyan-400" />
             </div>
-          </div>
-        ) : (
-          <button
-            onClick={onConnect}
-            className="text-sm font-bold text-slate-300 hover:text-white px-3 py-2"
-          >
-            Log In
-          </button>
-        )}
+            <div className="flex flex-col items-start">
+               <span className="text-xs font-bold text-white tracking-wider">{wallet.isConnected ? 'USER.LOGGED_IN' : 'GUEST.ACCESS'}</span>
+               <span className="text-[10px] text-amber-500 font-mono">{wallet.karmaPoints} CREDITS</span>
+            </div>
+         </button>
       </div>
     </header>
   );
